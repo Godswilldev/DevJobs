@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import About from "./about";
 
 const Form = () => {
   return (
     <div>
-      <h1>form page</h1>
-      <Link href="/">Home page</Link>
+      <h1>Form Page</h1>
     </div>
   );
 };

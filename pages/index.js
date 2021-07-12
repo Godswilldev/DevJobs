@@ -1,12 +1,29 @@
-import React from "react";
+import axios from "axios";
 import Link from "next/link";
-const index = () => {
+
+const Index = ({ data, mood }) => {
   return (
     <div>
-      <h1>Greg</h1> 
-      <Link href="/Form">form page</Link>
+      <h1>{mood} page</h1>
+      {data.map((posts) => (
+        <Link href="/posts" key={posts.id}>
+          <li>{posts.title}</li>
+        </Link>
+      ))}
     </div>
   );
 };
 
-export default index;
+export const getStaticProps = async () => {
+  const { data } = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
+  return {
+    props: {
+      data,
+      mood: "happy",
+    },
+  };
+};
+
+export default Index;
